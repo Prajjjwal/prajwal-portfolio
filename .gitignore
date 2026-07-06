@@ -1,0 +1,17 @@
+node_modules
+.next
+out
+build
+.DS_Store
+*.pem
+npm-debug.log*
+.env*.local
+.vercel
+next-env.d.ts
+*.tsbuildinfo
+
+# local config & design prototypes (not for the public repo)
+.claude/
+design-reference.html
+kidvanta_bloom.html
+kidvanta_vivid_v2.html
