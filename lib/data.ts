@@ -6,9 +6,9 @@
 export const SITE = {
   name: "Prajwal Kakade",
   domain: "https://prajwalkakade.dev",
-  title: "Prajwal Kakade — Freelance Web Developer",
+  title: "Prajwal Kakade — Web Developer & UI/UX Designer",
   description:
-    "Freelance web developer crafting fast, responsive, conversion-focused websites and app UIs with React & Next.js for businesses worldwide.",
+    "Web developer & UI/UX designer crafting fast React & Next.js websites, app interfaces, dashboards, and design systems — and turning designs into pixel-perfect live sites for businesses worldwide.",
   email: "kakadepb15@gmail.com",
   // Swap these for real profile URLs when ready.
   linkedin: "https://www.linkedin.com/in/prajwal-kakade",
@@ -99,17 +99,20 @@ export const SERVICES = [
   {
     icon: "</>",
     name: "Web development",
-    description: "Custom React & Next.js websites built for speed, SEO, and conversion",
+    description:
+      "Custom React & Next.js websites and landing pages built for speed, SEO, and conversion",
   },
   {
     icon: "UI",
     name: "UI/UX design",
-    description: "Clean, intuitive interfaces that your users will love using",
+    description:
+      "App interfaces, dashboards, and design systems — like Kidvanta, a 20+ screen multi-role health app",
   },
   {
     icon: "⚡",
-    name: "Performance",
-    description: "Lighthouse 90+ scores with optimized loading and core web vitals",
+    name: "Design-to-code",
+    description:
+      "Converting your designs into pixel-perfect, fully responsive live websites",
   },
 ];
 

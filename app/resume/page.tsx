@@ -5,7 +5,7 @@ import ResumeActions from "./ResumeActions";
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "Resume of Prajwal Kakade — freelance web developer specializing in React, Next.js, Tailwind CSS, and UI/UX design.",
+    "Resume of Prajwal Kakade — web developer & UI/UX designer specializing in React, Next.js, app interface design, and design-to-code builds.",
 };
 
 const sectionTitle: React.CSSProperties = {
@@ -46,7 +46,7 @@ export default function ResumePage() {
               marginBottom: "0.875rem",
             }}
           >
-            FREELANCE WEB DEVELOPER
+            WEB DEVELOPER & UI/UX DESIGNER
           </div>
           <div
             className="print-muted"
@@ -77,10 +77,10 @@ export default function ResumePage() {
               fontWeight: 300,
             }}
           >
-            Freelance web developer building modern websites and app UIs for businesses
-            with React and Next.js. I combine clean, conversion-focused design with fast,
-            SEO-friendly engineering — from landing pages to complete multi-screen
-            product interfaces.
+            Web developer &amp; UI/UX designer building modern websites and app
+            interfaces for businesses. I design dashboards, design systems, and
+            multi-screen product interfaces, build fast, SEO-friendly React &amp;
+            Next.js sites, and convert designs into pixel-perfect live websites.
           </p>
         </section>
 

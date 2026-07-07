@@ -176,17 +176,18 @@ export default function Portfolio() {
         <section className="phero">
           <div className="phero-grid">
             <motion.div {...reveal}>
-              <div className="phero-tag">FREELANCE WEB DEVELOPER</div>
+              <div className="phero-tag">WEB DEVELOPER & UI/UX DESIGNER</div>
               <h1>
-                I build modern
+                I design &amp; build
                 <br />
-                websites that
+                modern websites and
                 <br />
-                <span className="accent">convert</span>.
+                <span className="accent">app interfaces</span>.
               </h1>
               <p>
-                React &amp; Next.js developer crafting fast, responsive, and
-                conversion-focused web experiences for businesses worldwide.
+                Web developer &amp; UI/UX designer crafting fast React &amp; Next.js
+                websites, polished app interfaces, and pixel-perfect design-to-code
+                builds for businesses worldwide.
               </p>
               <div className="pbtn-row">
                 <a className="pbtn-p" href="#projects">
@@ -341,12 +342,13 @@ export default function Portfolio() {
                 maxWidth: "46rem",
               }}
             >
-              Hey! I&apos;m Prajwal Kakade — a freelance web developer based in India,
-              working with clients worldwide. I believe great websites are crafted, not
-              just coded: I build modern websites and app UIs with React and Next.js,
-              from high-converting landing pages to complete multi-screen product
-              interfaces, always with clean design, fast load times, and attention to
-              the details users actually feel.
+              Hey! I&apos;m Prajwal Kakade — a web developer &amp; UI/UX designer based
+              in India, working with clients worldwide. I believe great products are
+              designed and built as one craft: I create modern websites with React and
+              Next.js, design app interfaces, dashboards, and design systems like
+              Kidvanta, and turn designs into pixel-perfect live sites — always with
+              clean design, fast load times, and attention to the details users
+              actually feel.
             </p>
           </motion.div>
         </section>

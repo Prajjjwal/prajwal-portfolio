@@ -95,13 +95,13 @@ export const PLANET_CONTENT: Record<PlanetId, PlanetModalDef> = {
     body: (
       <>
         <div className="mod-text">
-          Hey! I&apos;m Prajwal Kakade — a freelance web developer who believes great
-          websites are crafted, not just coded.
+          Hey! I&apos;m Prajwal Kakade — a web developer &amp; UI/UX designer who
+          believes great products are designed and built as one craft.
         </div>
         <div className="mod-text">
-          I build modern websites and app UIs for businesses using React and Next.js —
-          from high-converting landing pages to full multi-screen product interfaces,
-          always with clean design and fast load times.
+          I build modern websites with React and Next.js, design app interfaces,
+          dashboards, and design systems, and convert designs into pixel-perfect
+          live sites — always with clean design and fast load times.
         </div>
         <div className="mod-text">
           When not coding, I explore new tech and sharpen my design eye.
@@ -173,8 +173,8 @@ export const PLANET_CONTENT: Record<PlanetId, PlanetModalDef> = {
       <>
         <div className="rs-t">WHAT I DO</div>
         <div className="rs-i">
-          <div className="rs-in">Freelance Web Developer</div>
-          <div className="rs-is">Websites & app UIs for businesses — React, Next.js, UI/UX</div>
+          <div className="rs-in">Web Developer & UI/UX Designer</div>
+          <div className="rs-is">Websites, app interfaces & design-to-code — React, Next.js, Figma</div>
           <div className="rs-id">AVAILABLE FOR PROJECTS</div>
         </div>
         <div className="rs-t">TECH STACK</div>

@@ -1,6 +1,6 @@
 # prajwalkakade.dev
 
-Freelance web developer portfolio — Next.js 14 (App Router) + Tailwind CSS + Framer Motion.
+Web developer & UI/UX designer portfolio — Next.js 14 (App Router) + Tailwind CSS + Framer Motion.
 
 ## Develop
 
