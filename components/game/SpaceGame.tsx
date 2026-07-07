@@ -42,6 +42,9 @@ const INTRO_PLANETS = [
 const ACCEL = 0.09;
 const FRICTION = 0.96;
 const MAX_SPEED = 3.8;
+// Boost: hold Shift (desktop) or push the joystick to its outer edge (mobile)
+const BOOST_MULT = 1.5;
+const JOY_BOOST_EDGE = 0.95;
 
 export default function SpaceGame() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -67,7 +70,7 @@ export default function SpaceGame() {
     keys: {} as Record<string, boolean>,
     mouse: { down: false, x: 0, y: 0 },
     joy: { active: false, dx: 0, dy: 0 },
-    thrust: [] as { x: number; y: number; vx: number; vy: number; life: number; r: number }[],
+    thrust: [] as { x: number; y: number; vx: number; vy: number; life: number; r: number; boost?: boolean }[],
     W: 0,
     H: 0,
     time: 0,
@@ -272,10 +275,14 @@ export default function SpaceGame() {
       }
 
       const { ship, keys, mouse, joy: js, cam } = g;
-      if (keys["w"] || keys["arrowup"]) ship.vy -= ACCEL;
-      if (keys["s"] || keys["arrowdown"]) ship.vy += ACCEL;
-      if (keys["a"] || keys["arrowleft"]) ship.vx -= ACCEL;
-      if (keys["d"] || keys["arrowright"]) ship.vx += ACCEL;
+      const boosting =
+        !!keys["shift"] || (js.active && Math.hypot(js.dx, js.dy) >= JOY_BOOST_EDGE);
+      const accel = boosting ? ACCEL * BOOST_MULT : ACCEL;
+      const maxSpeed = boosting ? MAX_SPEED * BOOST_MULT : MAX_SPEED;
+      if (keys["w"] || keys["arrowup"]) ship.vy -= accel;
+      if (keys["s"] || keys["arrowdown"]) ship.vy += accel;
+      if (keys["a"] || keys["arrowleft"]) ship.vx -= accel;
+      if (keys["d"] || keys["arrowright"]) ship.vx += accel;
       if (mouse.down) {
         const dx = mouse.x - g.W / 2;
         const dy = mouse.y - g.H / 2;
@@ -286,15 +293,15 @@ export default function SpaceGame() {
         }
       }
       if (js.active) {
-        ship.vx += js.dx * ACCEL;
-        ship.vy += js.dy * ACCEL;
+        ship.vx += js.dx * accel;
+        ship.vy += js.dy * accel;
       }
       ship.vx *= FRICTION;
       ship.vy *= FRICTION;
       const spd = Math.hypot(ship.vx, ship.vy);
-      if (spd > MAX_SPEED) {
-        ship.vx = (ship.vx / spd) * MAX_SPEED;
-        ship.vy = (ship.vy / spd) * MAX_SPEED;
+      if (spd > maxSpeed) {
+        ship.vx = (ship.vx / spd) * maxSpeed;
+        ship.vy = (ship.vy / spd) * maxSpeed;
       }
       ship.x = Math.max(40, Math.min(WORLD - 40, ship.x + ship.vx));
       ship.y = Math.max(40, Math.min(WORLD - 40, ship.y + ship.vy));
@@ -302,16 +309,20 @@ export default function SpaceGame() {
       cam.x = ship.x - g.W / 2;
       cam.y = ship.y - g.H / 2;
 
-      if (spd > 0.5)
-        for (let i = 0; i < 2; i++)
+      if (spd > 0.5) {
+        const n = boosting ? 4 : 2;
+        const kick = boosting ? 1.5 : 1;
+        for (let i = 0; i < n; i++)
           g.thrust.push({
             x: ship.x - Math.cos(ship.angle) * 10,
             y: ship.y - Math.sin(ship.angle) * 10,
-            vx: -Math.cos(ship.angle) * (0.8 + Math.random() * 0.6) + (Math.random() - 0.5) * 0.5,
-            vy: -Math.sin(ship.angle) * (0.8 + Math.random() * 0.6) + (Math.random() - 0.5) * 0.5,
+            vx: -Math.cos(ship.angle) * (0.8 + Math.random() * 0.6) * kick + (Math.random() - 0.5) * 0.5,
+            vy: -Math.sin(ship.angle) * (0.8 + Math.random() * 0.6) * kick + (Math.random() - 0.5) * 0.5,
             life: 1,
-            r: Math.random() * 1.8 + 0.8,
+            r: (Math.random() * 1.8 + 0.8) * (boosting ? 1.4 : 1),
+            boost: boosting,
           });
+      }
       g.thrust = g.thrust.filter((p) => {
         p.x += p.vx;
         p.y += p.vy;
@@ -441,8 +452,8 @@ export default function SpaceGame() {
       }
 
       for (const p of g.thrust) {
-        ctx.globalAlpha = p.life * 0.5;
-        ctx.fillStyle = "#10b981";
+        ctx.globalAlpha = p.life * (p.boost ? 0.65 : 0.5);
+        ctx.fillStyle = p.boost ? "#67e8f9" : "#10b981";
         ctx.beginPath();
         ctx.arc(p.x - cam.x, p.y - cam.y, p.r * p.life, 0, 6.28);
         ctx.fill();
@@ -557,7 +568,9 @@ export default function SpaceGame() {
           LAUNCH MISSION ▸
         </button>
         <div className="intro-keys">
-          {isMobile ? "Joystick to fly • Tap planets" : "WASD / Arrow Keys to fly • Click planets"}
+          {isMobile
+            ? "Joystick to fly • Push to edge for boost • Tap planets"
+            : "WASD / Arrow Keys to fly • Hold Shift to boost • Click planets"}
         </div>
         <div className="intro-ps">
           {INTRO_PLANETS.map((p) => (
